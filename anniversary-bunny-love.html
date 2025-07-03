@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Anniversary Surprise</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #ffe6f0; /* soft pink */
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    .cloud, .heart, .bunny, .letter {
+      position: absolute;
+    }
+
+    .cloud {
+      width: 100px;
+      top: 50px;
+      animation: cloudMove 60s linear infinite;
+      opacity: 0.8;
+    }
+
+    .heart {
+      width: 30px;
+      animation: floatUp 10s ease-in infinite;
+    }
+
+    .bunny {
+      width: 100px;
+      bottom: 0;
+      left: -120px;
+      animation: bunnyMove 15s ease-in-out forwards;
+    }
+
+    .letter {
+      width: 40px;
+      position: absolute;
+      bottom: 40px;
+      left: 30px;
+      cursor: pointer;
+    }
+
+    #message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      text-align: center;
+      display: none;
+      font-size: 24px;
+      color: #ff3399;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+      30% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
+
+    @keyframes cloudMove {
+      0% { left: -150px; }
+      100% { left: 100vw; }
+    }
+
+    @keyframes bunnyMove {
+      0% { left: -120px; }
+      100% { left: 50vw; }
+    }
+  </style>
+</head>
+<body>
+
+<img src="https://i.imgur.com/0oN6hVm.png" class="cloud" style="top: 60px;">
+<img src="https://i.imgur.com/0oN6hVm.png" class="cloud" style="top: 120px; animation-delay: 20s;">
+<img src="https://i.imgur.com/0oN6hVm.png" class="cloud" style="top: 180px; animation-delay: 40s;">
+
+<!-- Hearts -->
+<script>
+  function spawnHearts() {
+    const heart = document.createElement('img');
+    heart.src = 'https://i.imgur.com/QpT0ZfF.png';
+    heart.className = 'heart';
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.width = Math.random() * 20 + 20 + 'px';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 10000);
+  }
+  setInterval(spawnHearts, 800);
+</script>
+
+<!-- Bunny -->
+<div class="bunny" id="bunny">
+  <img src="https://i.imgur.com/zR3qbnT.png" width="100">
+  <img src="https://i.imgur.com/KqK1Pbe.png" class="letter" onclick="showMessage()">
+</div>
+
+<!-- Message -->
+<div id="message">
+  <h2>Happy Anniversary Sayang 💖</h2>
+  <p>I Love You 🐰💌</p>
+</div>
+
+<script>
+  function showMessage() {
+    document.getElementById("message").style.display = "block";
+  }
+</script>
+
+</body>
+</html>
